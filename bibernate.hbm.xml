@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+ 2 <hibernate-mapping package="com.aegop.mto.pojo">  
+ 3     <!-- 标识一个类的xml映射,name为类名,table为表名 -->  
+ 4     <class name="Street" table="Streets">  
+ 5         <!-- 主键的设置,generator标识主键生成方式,因为native便于数据库的移植所以.嘿嘿!你懂的 -->  
+ 6         <id name="id" type="int">  
+ 7             <column name="Id"/>  
+ 8             <generator class="native"/>  
+ 9         </id>  
+10         <!-- 这里配了该类一个属性街道名称 name属性字段,column,数据库对应列 -->  
+11         <property name="streetName" type="string" column="StreetName" />  
+12         <!-- 这里同上,写法不同而已 -->  
+13         <property name="streetPhone" type="string">  
+14             <column name="Streetphone" />  
+15         </property>  
+16         <!-- 下面同样是配该类一个属性,只是比较特殊而已! DisrtictId它是对应实体（数据库中主键，hibernate有缺省）如果加property-ref=DistrictId，效果是一样！此属性用在有联合主键的时候-->  
+17         <many-to-one name="district" class="District">  
+18             <column name="DistrictId"/>  
+19         </many-to-one>  
+20     </class>  
+21 </hibernate-mapping
